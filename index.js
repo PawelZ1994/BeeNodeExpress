@@ -9,6 +9,12 @@ app.get("/hello", (req, res) => {
   res.send("Hello WORLD");
 });
 
+app.get("/dane", async (req, res) => {
+  const result = await fetch("https://temperaturyapi2.onrender.com/dane");
+  console.log(result);
+  res.send(result.json());
+});
+
 app.listen(3000, () => {
   console.log("Serwer działa!");
 });
