@@ -11,8 +11,10 @@ app.get("/hello", (req, res) => {
 
 app.get("/dane", async (req, res) => {
   const result = await fetch("https://temperaturyapi2.onrender.com/dane");
-  console.log(result);
-  res.send(result.json());
+  const dane = await result.json();
+  const temperatura = dane.map((e) => e.temperatura);
+
+  res.json(temperatura);
 });
 
 app.listen(3000, () => {
