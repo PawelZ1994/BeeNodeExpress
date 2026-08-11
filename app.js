@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 import cors from "cors";
 
@@ -17,9 +20,11 @@ app.get("/dane", async (req, res) => {
   res.json(temperatura);
 });
 
-app.listen(3000, () => {
-  console.log("Serwer działa!");
-});
+export default app;
+
+// app.listen(3000, () => {
+//   console.log("Serwer działa!");
+// });
 
 /*
 {
