@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
-
+import db from "./config/db.js";
 import express from "express";
 import cors from "cors";
 
@@ -16,8 +16,14 @@ app.get("/dane", async (req, res) => {
   const result = await fetch("https://temperaturyapi2.onrender.com/dane");
   const dane = await result.json();
   const temperatura = dane.map((e) => e.temperatura);
-
   res.json(temperatura);
+});
+
+app.post("/dodaj", async (temp) => {
+  const [result] = await db.query(
+    `INSERT INTO pomiary (temperatura) VALUES (?)`,
+    [temp]
+  );
 });
 
 export default app;
