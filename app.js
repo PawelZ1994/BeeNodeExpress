@@ -1,6 +1,7 @@
 import db from "./config/db.js";
 import express from "express";
 import cors from "cors";
+import pomiarRoutes from "./routes/pomiarRoutes.js";
 
 const app = express();
 app.use(express.json());
@@ -17,18 +18,19 @@ app.get("/dane", async (req, res) => {
   res.json(temperatura);
 });
 
-app.post("/dodaj", async (req, res) => {
-  const temp = parseFloat(req.body.temperatura);
-  const [result] = await db.query(
-    `INSERT INTO pomiary (temperatura) VALUES (?)`,
-    [temp]
-  );
+app.use("/app", pomiarRoutes);
+// app.post("/dodaj", async (req, res) => {
+//   const temp = parseFloat(req.body.temperatura);
+//   const [result] = await db.query(
+//     `INSERT INTO pomiary (temperatura) VALUES (?)`,
+//     [temp]
+//   );
 
-  res.json({
-    status: "OK",
-    id: result.insertId,
-  });
-});
+//   res.json({
+//     status: "OK",
+//     id: result.insertId,
+//   });
+// });
 
 export default app;
 
