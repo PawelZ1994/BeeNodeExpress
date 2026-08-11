@@ -1,7 +1,7 @@
-import db from "./config/db.js";
 import express from "express";
 import cors from "cors";
 import pomiarRoutes from "./routes/pomiarRoutes.js";
+import errorHadler from "./middleware/errorHandler.js";
 
 const app = express();
 app.use(express.json());

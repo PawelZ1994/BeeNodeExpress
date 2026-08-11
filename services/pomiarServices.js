@@ -1,14 +1,9 @@
-import db from "../config/db.js";
+import * as pomiarRepository from "../repository/pomiarRepository.js";
 
-export const addMeasurement = async (req, res) => {
-  const temp = parseFloat(req.body.temperatura);
-  const [result] = await db.query(
-    `INSERT INTO pomiary (temperatura) VALUES (?) `,
-    [temp]
-  );
+export const addMeasurement = async (temp) => {
+  // if (temp < -50 || temp > 100) {
+  //   throw new Error("Invalid temperature");
+  // }
 
-  res.json({
-    status: "OK",
-    id: result.insertId,
-  });
+  return pomiarRepository.createTemperature(temp);
 };
