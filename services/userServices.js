@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt";
 import crypto from "crypto";
+import jwt from "jsonwebtoken";
 import { createUser, findUserByLogin } from "../repository/userRepository.js";
 
 export const registerUser = async (login, email, password) => {
@@ -25,10 +26,23 @@ export const loginUser = async (login, password) => {
     throw new Error("Nieprawidłowy login lub hasło");
   }
 
+  //jwt----------------------
+  const token = jwt.sign(
+    {
+      userId: user.id,
+      login: user.login,
+    },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: "1h",
+    }
+  );
+  //-------------------------
   return {
     id: user.id,
     login: user.login,
     email: user.email,
     apiKey: user.apiKey,
+    token, //dodany token
   };
 };
