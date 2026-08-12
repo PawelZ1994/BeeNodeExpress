@@ -1,4 +1,17 @@
 function Welcome({ user, onLogout }) {
+  //token
+  async function sprawdzToken() {
+    const response = await fetch("/user/me", {
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+
+    const dane = await response.json();
+
+    console.log(dane);
+  }
+
   return (
     <div className="page">
       <div className="card">
@@ -15,6 +28,9 @@ function Welcome({ user, onLogout }) {
         <button className="main-button" onClick={onLogout}>
           Wyloguj się
         </button>
+
+        {/* sprawdzanie tokena  mozna ten button usunać*/}
+        <button onClick={sprawdzToken}>Sprawdź JWT</button>
       </div>
     </div>
   );
