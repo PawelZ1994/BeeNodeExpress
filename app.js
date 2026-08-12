@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import pomiarRoutes from "./routes/pomiarRoutes.js";
 import errorHadler from "./middleware/errorHandler.js";
+import userRoutes from "./routes/userRoutes.js";
 
 const app = express();
 app.use(express.json());
@@ -38,6 +39,7 @@ app.get("/dane", async (req, res) => {
 
 app.use(express.static("public"));
 app.use("/app", pomiarRoutes);
+app.use("/user", userRoutes);
 // app.post("/dodaj", async (req, res) => {
 //   const temp = parseFloat(req.body.temperatura);
 //   const [result] = await db.query(
