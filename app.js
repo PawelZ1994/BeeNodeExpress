@@ -11,6 +11,24 @@ app.get("/hello", (req, res) => {
   res.send("Hello WORLD");
 });
 
+//---połączenie z frontendem reactem obłsuga rejestracji:
+app.post("/register", (req, res) => {
+  const { login, email, password } = req.body;
+
+  console.log("Rejestracja:", {
+    login,
+    email,
+    password,
+  });
+
+  res.status(201).json({
+    message: "Konto utworzone",
+    login: login,
+  });
+});
+
+//--konie cobsługi rejestracji
+
 app.get("/dane", async (req, res) => {
   const result = await fetch("https://temperaturyapi2.onrender.com/dane");
   const dane = await result.json();
