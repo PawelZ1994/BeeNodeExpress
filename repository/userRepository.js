@@ -16,3 +16,16 @@ export const createUser = async (login, email, password, apiKey) => {
     apiKey,
   };
 };
+
+export const findUserByLogin = async (login) => {
+  const [rows] = await db.query(
+    `
+    SELECT id, login, email, password, apiKey
+    FROM users
+    WHERE login = ?
+    `,
+    [login]
+  );
+
+  return rows[0];
+};
