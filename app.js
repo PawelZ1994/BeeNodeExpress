@@ -18,6 +18,7 @@ app.get("/dane", async (req, res) => {
   res.json(temperatura);
 });
 
+app.use(express.static("public"));
 app.use("/app", pomiarRoutes);
 // app.post("/dodaj", async (req, res) => {
 //   const temp = parseFloat(req.body.temperatura);
