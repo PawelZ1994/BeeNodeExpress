@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import crypto from "crypto";
 import jwt from "jsonwebtoken";
-import { createUser, findUserByLogin } from "../repository/userRepository.js";
+import { createUser, findUserByLogin } from "../repositories/userRepository.js";
 
 export const registerUser = async (login, email, password) => {
   const hashedPassword = await bcrypt.hash(password, 12);

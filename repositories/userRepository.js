@@ -29,3 +29,16 @@ export const findUserByLogin = async (login) => {
 
   return rows[0];
 };
+
+export const findUserByApiKey = async (apiKey) => {
+  const [rows] = await db.query(
+    `
+    SELECT id
+    FROM users
+    WHERE apiKey = ?
+    `,
+    [apiKey]
+  );
+
+  return rows[0];
+};
