@@ -2,7 +2,7 @@ import db from "../config/db.js";
 
 export const createTemperature = async (temp) => {
   const [result] = await db.query(
-    `INSERT INTO pomiary (temperatura) VALUES (?)`,
+    `INSERT INTO temperatures (temperature) VALUES (?)`,
     [temp]
   );
 

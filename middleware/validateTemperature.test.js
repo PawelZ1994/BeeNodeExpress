@@ -5,7 +5,7 @@ describe("validateTemperature", () => {
   it("powinien zaakceptować temperaturę 25", () => {
     const req = {
       body: {
-        temperatura: 25,
+        temperature: 25,
       },
     };
 
@@ -20,13 +20,13 @@ describe("validateTemperature", () => {
     validateTemperature(req, res, next);
 
     expect(nextCalled).toBe(true);
-    expect(req.body.temperatura).toBe(25);
+    expect(req.body.temperature).toBe(25);
   });
   // -------------------------------------------------------------------------------------
   it("powinien odrzucić temperaturę większą niż 100", () => {
     const req = {
       body: {
-        temperatura: 150,
+        temperature: 150,
       },
     };
 
