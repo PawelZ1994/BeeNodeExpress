@@ -9,7 +9,7 @@
 // };
 
 import { findUserByApiKey } from "../repositories/userRepository.js";
-import { findDevice } from "../repositories/deviceRepository.js";
+import { findDevice, createDevice } from "../repositories/deviceRepository.js";
 import { createTemperature } from "../repositories/temperatureRepository.js";
 
 export const saveTemperature = async (apiKey, deviceName, temperature) => {
@@ -21,10 +21,13 @@ export const saveTemperature = async (apiKey, deviceName, temperature) => {
   }
 
   // 2. Znajdujemy urządzenie użytkownika
-  const device = await findDevice(user.id, deviceName);
+  let device = await findDevice(user.id, deviceName);
 
+  // if (!device) {
+  //   throw new Error("Urządzenie nie istnieje");
+  // }
   if (!device) {
-    throw new Error("Urządzenie nie istnieje");
+    device = await createDevice(user.id, deviceName);
   }
 
   // 3. Zapisujemy temperaturę
