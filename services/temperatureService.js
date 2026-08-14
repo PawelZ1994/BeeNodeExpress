@@ -3,8 +3,12 @@ import {
   findDevice,
   createDevice,
   findDevicesByUserId,
+  findDeviceByIdAndUserId,
 } from "../repositories/deviceRepository.js";
-import { createTemperature } from "../repositories/temperatureRepository.js";
+import {
+  createTemperature,
+  findTemperaturesByDeviceAndDate,
+} from "../repositories/temperatureRepository.js";
 
 export const saveTemperature = async (apiKey, deviceName, temperature) => {
   // 1. Znajdujemy użytkownika po API key
@@ -34,6 +38,18 @@ export const getUserDevices = async (userId) => {
   const devices = await findDevicesByUserId(userId);
 
   return devices;
+};
+
+export const getTemperaturesForDevice = async (userId, deviceId, date) => {
+  const device = await findDevice(userId, deviceId);
+
+  if (!device) {
+    throw new Error("Urządzenie nie istnieje");
+  }
+
+  const temperatures = await findTemperaturesByDeviceAndDate(deviceId, date);
+
+  return temperatures;
 };
 
 // import * as pomiarRepository from "../repositories/temperatureRepository.js";

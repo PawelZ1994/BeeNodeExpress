@@ -28,3 +28,19 @@ export const createTemperature = async (deviceId, temperature) => {
     id: result.insertId,
   };
 };
+
+//Znajdywanie temperatury i daty po urządzeniu:
+export const findTemperaturesByDeviceAndDate = async (deviceId, date) => {
+  const [rows] = await db.query(
+    `
+    SELECT id, temperature, measuredAt
+    FROM temperatures
+    WHERE deviceId = ?
+      AND DATE(measuredAt) = ?
+    ORDER BY measuredAt ASC
+    `,
+    [deviceId, date]
+  );
+
+  return rows;
+};

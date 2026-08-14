@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   addTemperature,
   getDevices,
+  getDeviceTemperatures
 } from "../controllers/temperatureController.js";
 import validateTemperature from "../middleware/validateTemperature.js";
 import authMiddleware from "../middleware/authMiddleware.js"; //ta linia dodaje ten JWT token
@@ -10,6 +11,13 @@ const router = Router();
 
 router.post("/dodaj", validateTemperature, addTemperature);
 router.get("/devices", authMiddleware, getDevices);
+
+//endpoint do poboru temp i daty z urządzenia:
+router.get(
+  "/devices/:deviceId/temperatures",
+  authMiddleware,
+  getDeviceTemperatures
+);
 
 export default router;
 

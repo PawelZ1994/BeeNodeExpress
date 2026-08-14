@@ -1,6 +1,7 @@
 import {
   saveTemperature,
   getUserDevices,
+  getTemperaturesForDevice
 } from "../services/temperatureService.js";
 
 export const addTemperature = async (req, res) => {
@@ -25,6 +26,24 @@ export const getDevices = async (req, res, next) => {
     const devices = await getUserDevices(req.user.userId);
 
     res.status(200).json(devices);
+  } catch (error) {
+    next(error);
+  }
+};
+
+//pobór temperatur z danego urządzenia
+export const getDeviceTemperatures = async (req, res, next) => {
+  try {
+    const { deviceId } = req.params;
+    const { date } = req.query;
+
+    const temperatures = await getTemperaturesForDevice(
+      req.user.userId,
+      deviceId,
+      date
+    );
+
+    res.status(200).json(temperatures);
   } catch (error) {
     next(error);
   }
