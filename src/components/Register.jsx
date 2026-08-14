@@ -25,6 +25,8 @@ function Register({ onLogin }) {
 
     if (response.ok) {
       setKomunikat("Konto zostało pomyślnie utworzone!");
+    } else {
+      setKomunikat(dane.error);
     }
   }
 
