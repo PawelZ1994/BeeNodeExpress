@@ -28,3 +28,17 @@ export const createDevice = async (userId, deviceName) => {
     deviceName,
   };
 };
+
+//znajdowanie wszystkich urządzeń danego użytkowniak potrzebne do wyswietlania w apliakcji
+export const findDevicesByUserId = async (userId) => {
+  const [rows] = await db.query(
+    `
+    SELECT id, userId, deviceName
+    FROM devices
+    WHERE userId = ?
+    `,
+    [userId]
+  );
+
+  return rows;
+};

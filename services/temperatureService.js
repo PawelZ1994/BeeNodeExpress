@@ -1,28 +1,22 @@
-// import * as pomiarRepository from "../repositories/temperatureRepository.js";
-
-// export const addMeasurement = async (temp) => {
-//   // if (temp < -50 || temp > 100) {
-//   //   throw new Error("Invalid temperature");
-//   // }
-
-//   return pomiarRepository.createTemperature(temp);
-// };
-
 import { findUserByApiKey } from "../repositories/userRepository.js";
-import { findDevice, createDevice } from "../repositories/deviceRepository.js";
+import {
+  findDevice,
+  createDevice,
+  findDevicesByUserId,
+} from "../repositories/deviceRepository.js";
 import { createTemperature } from "../repositories/temperatureRepository.js";
 
 export const saveTemperature = async (apiKey, deviceName, temperature) => {
   // 1. Znajdujemy użytkownika po API key
+  console.log("API KEY:", apiKey); //do tesu
   const user = await findUserByApiKey(apiKey);
+  console.log("USER:", user); //do testu
 
   if (!user) {
     throw new Error("Nieprawidłowy API key");
   }
-
   // 2. Znajdujemy urządzenie użytkownika
   let device = await findDevice(user.id, deviceName);
-
   // if (!device) {
   //   throw new Error("Urządzenie nie istnieje");
   // }
@@ -35,3 +29,19 @@ export const saveTemperature = async (apiKey, deviceName, temperature) => {
 
   return result;
 };
+
+export const getUserDevices = async (userId) => {
+  const devices = await findDevicesByUserId(userId);
+
+  return devices;
+};
+
+// import * as pomiarRepository from "../repositories/temperatureRepository.js";
+
+// export const addMeasurement = async (temp) => {
+//   // if (temp < -50 || temp > 100) {
+//   //   throw new Error("Invalid temperature");
+//   // }
+
+//   return pomiarRepository.createTemperature(temp);
+// };

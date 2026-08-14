@@ -1,0 +1,191 @@
+/* Cała strona */
+.page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 20px;
+  box-sizing: border-box;
+  background: #f4f7fb;
+  font-family: Arial, sans-serif;
+}
+
+/* Główna karta */
+.card {
+  width: 100%;
+  max-width: 480px;
+  padding: 35px;
+  box-sizing: border-box;
+
+  background: white;
+  border-radius: 20px;
+
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+}
+
+/* Nagłówek */
+.card h1 {
+  margin: 0;
+  font-size: 30px;
+  color: #1f2937;
+  text-align: center;
+}
+
+/* Tekst pod nagłówkiem */
+.subtitle {
+  margin: 10px 0 28px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+/* API KEY */
+.api-key {
+  padding: 18px;
+  margin-bottom: 25px;
+
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+}
+
+.api-key p {
+  margin: 0 0 8px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.api-key strong {
+  display: block;
+
+  color: #111827;
+  font-size: 15px;
+
+  word-break: break-all;
+}
+
+/* Dropdown */
+.device-dropdown {
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+/* Główny przycisk dropdown */
+.device-dropdown-button {
+  width: 100%;
+  padding: 15px 17px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+
+  background: white;
+  color: #1f2937;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.device-dropdown-button:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.device-dropdown-button:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+/* Lista urządzeń */
+.device-dropdown-list {
+  width: 100%;
+  margin-top: 7px;
+
+  background: white;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Pojedyncze urządzenie */
+.device-option {
+  min-height: 48px;
+  padding: 0 17px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  color: #374151;
+  font-size: 15px;
+
+  cursor: pointer;
+
+  transition: background 0.15s;
+}
+
+/* Linie pomiędzy urządzeniami */
+.device-option + .device-option {
+  border-top: 1px solid #f1f5f9;
+}
+
+.device-option:hover {
+  background: #f3f4f6;
+}
+
+/* Wylogowanie */
+.main-button {
+  width: 100%;
+  padding: 14px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: #111827;
+  color: white;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: background 0.2s, transform 0.1s;
+}
+
+.main-button:hover {
+  background: #1f2937;
+}
+
+.main-button:active {
+  transform: scale(0.98);
+}
+
+/* Telefon */
+@media (max-width: 500px) {
+  .page {
+    padding: 20px 15px;
+  }
+
+  .card {
+    padding: 25px 20px;
+    border-radius: 16px;
+  }
+
+  .card h1 {
+    font-size: 26px;
+  }
+}
