@@ -41,7 +41,11 @@ export const getUserDevices = async (userId) => {
 };
 
 export const getTemperaturesForDevice = async (userId, deviceId, date) => {
-  const device = await findDevice(userId, deviceId);
+  console.log("userId:", userId);
+  console.log("deviceId:", deviceId);
+  console.log("date:", date);
+
+  const device = await findDeviceByIdAndUserId(deviceId, userId);
 
   if (!device) {
     throw new Error("Urządzenie nie istnieje");

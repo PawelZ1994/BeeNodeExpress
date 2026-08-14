@@ -45,6 +45,8 @@ export const findDevicesByUserId = async (userId) => {
 
 // funkcja do znajdywania temperatur i dat
 export const findDeviceByIdAndUserId = async (deviceId, userId) => {
+  console.log("REPOSITORY deviceId:", deviceId);
+  console.log("REPOSITORY userId:", userId);
   const [rows] = await db.query(
     `
     SELECT id, userId, deviceName
@@ -53,6 +55,6 @@ export const findDeviceByIdAndUserId = async (deviceId, userId) => {
     `,
     [deviceId, userId]
   );
-
+  console.log("SQL DEVICE:", rows); //do testu
   return rows[0];
 };

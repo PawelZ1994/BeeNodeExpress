@@ -41,6 +41,7 @@ export const findTemperaturesByDeviceAndDate = async (deviceId, date) => {
     `,
     [deviceId, date]
   );
+  console.log("TEMPERATURES:", rows); // do testu
 
   return rows;
 };
