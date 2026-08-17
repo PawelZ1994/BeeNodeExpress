@@ -13,7 +13,7 @@ import {
 export const saveTemperature = async (apiKey, deviceName, temperature) => {
   // 1. Znajdujemy użytkownika po API key
   console.log("API KEY:", apiKey); //do tesu
-  const user = await findUserByApiKey(apiKey);
+  const user = await findUserByApiKey(apiKey); //find UserByApiKey zwraca json {id: id usera}np. {id: 7}
   console.log("USER:", user); //do testu
 
   if (!user) {
