@@ -5,6 +5,7 @@ const validateRegister = (req, res, next) => {
 
   if (!result.success) {
     return res.status(400).json({
+      // path: result.error.issues[0].path,
       error: result.error.issues[0].message,
     });
   }
