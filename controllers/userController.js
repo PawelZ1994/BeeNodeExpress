@@ -2,6 +2,7 @@ import {
   registerUser,
   loginUser,
   deleteAccount,
+  getUserData,
 } from "../services/userServices.js";
 
 export const register = async (req, res, next) => {
@@ -27,6 +28,25 @@ export const login = async (req, res, next) => {
 
     res.status(200).json({
       message: "Zalogowano pomyślnie",
+      user,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// =====================================
+// POBRANIE DANYCH UŻYTKOWNIKA
+// =====================================
+
+export const me = async (req, res, next) => {
+  try {
+    // userId pochodzi z JWT
+    const userId = req.user.userId;
+
+    const user = await getUserData(userId);
+
+    res.status(200).json({
       user,
     });
   } catch (error) {

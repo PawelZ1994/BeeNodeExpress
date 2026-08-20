@@ -43,6 +43,19 @@ export const findUserByApiKey = async (apiKey) => {
   return rows[0];
 };
 
+export const findUserById = async (userId) => {
+  const [rows] = await db.query(
+    `
+    SELECT id, login, email, apiKey
+    FROM users
+    WHERE id = ?
+    `,
+    [userId]
+  );
+
+  return rows[0];
+};
+
 // =====================================
 // USUWANIE CAŁEGO KONTA
 // =====================================

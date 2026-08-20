@@ -5,6 +5,7 @@ import {
   createUser,
   findUserByLogin,
   deleteUserAccount,
+  findUserById,
 } from "../repositories/userRepository.js";
 
 export const registerUser = async (login, email, password) => {
@@ -49,6 +50,16 @@ export const loginUser = async (login, password) => {
     apiKey: user.apiKey,
     token, //dodany token
   };
+};
+
+export const getUserData = async (userId) => {
+  const user = await findUserById(userId);
+
+  if (!user) {
+    throw new Error("Nie znaleziono użytkownika");
+  }
+
+  return user;
 };
 
 // =====================================
