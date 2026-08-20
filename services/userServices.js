@@ -1,7 +1,11 @@
 import bcrypt from "bcrypt";
 import crypto from "crypto";
 import jwt from "jsonwebtoken";
-import { createUser, findUserByLogin } from "../repositories/userRepository.js";
+import {
+  createUser,
+  findUserByLogin,
+  deleteUserAccount,
+} from "../repositories/userRepository.js";
 
 export const registerUser = async (login, email, password) => {
   const hashedPassword = await bcrypt.hash(password, 12);
@@ -44,5 +48,21 @@ export const loginUser = async (login, password) => {
     email: user.email,
     apiKey: user.apiKey,
     token, //dodany token
+  };
+};
+
+// =====================================
+// USUWANIE KONTA
+// =====================================
+
+export const deleteAccount = async (userId) => {
+  const deleted = await deleteUserAccount(userId);
+
+  if (!deleted) {
+    throw new Error("Nie znaleziono użytkownika");
+  }
+
+  return {
+    message: "Konto zostało usunięte",
   };
 };

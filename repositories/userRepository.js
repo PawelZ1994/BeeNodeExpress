@@ -42,3 +42,51 @@ export const findUserByApiKey = async (apiKey) => {
 
   return rows[0];
 };
+
+// =====================================
+// USUWANIE CAŁEGO KONTA
+// =====================================
+
+export const deleteUserAccount = async (userId) => {
+  // 1. Pobieramy urządzenia użytkownika
+  const [devices] = await db.query(
+    `
+    SELECT id
+    FROM devices
+    WHERE userId = ?
+    `,
+    [userId]
+  );
+
+  // 2. Usuwamy temperatury
+  //    należące do urządzeń użytkownika
+  for (const device of devices) {
+    await db.query(
+      `
+      DELETE FROM temperatures
+      WHERE deviceId = ?
+      `,
+      [device.id]
+    );
+  }
+
+  // 3. Usuwamy urządzenia użytkownika
+  await db.query(
+    `
+    DELETE FROM devices
+    WHERE userId = ?
+    `,
+    [userId]
+  );
+
+  // 4. Na końcu usuwamy użytkownika
+  const [result] = await db.query(
+    `
+    DELETE FROM users
+    WHERE id = ?
+    `,
+    [userId]
+  );
+
+  return result.affectedRows > 0;
+};
